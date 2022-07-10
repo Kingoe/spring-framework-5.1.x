@@ -271,6 +271,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 				this.entityResolver = new ResourceEntityResolver(resourceLoader);
 			}
 			else {
+				// Spring 中使用 DelegatingEntityResolver 为 EntityResolver 的实现类
 				this.entityResolver = new DelegatingEntityResolver(getBeanClassLoader());
 			}
 		}
