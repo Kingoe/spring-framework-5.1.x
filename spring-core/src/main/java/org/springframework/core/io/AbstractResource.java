@@ -40,10 +40,12 @@ import org.springframework.util.ResourceUtils;
  *
  * @author Juergen Hoeller
  * @since 28.12.2003
+ * 为 Resource 接口的抽象默认实现。实现了Resource接口的大部分公共实现
  */
 public abstract class AbstractResource implements Resource {
 
 	/**
+	 * 判断文件是否存在，若判断过程产生异常，就会关闭对应的流
 	 * This implementation checks whether a File can be opened,
 	 * falling back to whether an InputStream can be opened.
 	 * This will cover both directories and content resources.
@@ -52,6 +54,7 @@ public abstract class AbstractResource implements Resource {
 	public boolean exists() {
 		// Try file existence: can we find the file in the file system?
 		try {
+			// 基于File进行判断
 			return getFile().exists();
 		}
 		catch (IOException ex) {
@@ -108,6 +111,7 @@ public abstract class AbstractResource implements Resource {
 	public URI getURI() throws IOException {
 		URL url = getURL();
 		try {
+			// 根据 返回的 URL 构建 URI
 			return ResourceUtils.toURI(url);
 		}
 		catch (URISyntaxException ex) {

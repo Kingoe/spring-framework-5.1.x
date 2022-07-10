@@ -48,10 +48,14 @@ import org.springframework.lang.Nullable;
  * @see ClassPathResource
  * @see ByteArrayResource
  * @see InputStreamResource
+ *
+ * Resource为Spring框架所有资源的抽象和访问接口。
+ * 作为所有资源的统一抽象，Resource定义了一些通用的方法，由子类 AbstractResource 提供统一的默认实现
  */
 public interface Resource extends InputStreamSource {
 
 	/**
+	 * 资源是否存在
 	 * Determine whether this resource actually exists in physical form.
 	 * <p>This method performs a definitive existence check, whereas the
 	 * existence of a {@code Resource} handle only guarantees a valid
@@ -60,6 +64,7 @@ public interface Resource extends InputStreamSource {
 	boolean exists();
 
 	/**
+	 * 资源是否可读
 	 * Indicate whether non-empty contents of this resource can be read via
 	 * {@link #getInputStream()}.
 	 * <p>Will be {@code true} for typical resource descriptors that exist
@@ -75,6 +80,7 @@ public interface Resource extends InputStreamSource {
 	}
 
 	/**
+	 * 是否打开
 	 * Indicate whether this resource represents a handle with an open stream.
 	 * If {@code true}, the InputStream cannot be read multiple times,
 	 * and must be read and closed to avoid resource leaks.

@@ -38,7 +38,9 @@ import org.springframework.util.ResourceUtils;
  * @see org.springframework.core.io.support.ResourcePatternResolver
  * @see org.springframework.context.ApplicationContext
  * @see org.springframework.context.ResourceLoaderAware
- */
+ * Spring资源加载的统一抽象，具体的资源加载则由相应的实现类来完成。
+ * ResourceLoader 定义资源加载器，主要应用于根据给定的资源文件地址，返回对应的Resource
+ * */
 public interface ResourceLoader {
 
 	/** Pseudo URL prefix for loading from the class path: "classpath:". */
@@ -46,6 +48,7 @@ public interface ResourceLoader {
 
 
 	/**
+	 * 根据锁提供资源的路径 location 返回 Resource 实例，但是不保证该Resource 一定存在，需要 Resource exist 方法来判断
 	 * Return a Resource handle for the specified resource location.
 	 * <p>The handle should always be a reusable resource descriptor,
 	 * allowing for multiple {@link Resource#getInputStream()} calls.
