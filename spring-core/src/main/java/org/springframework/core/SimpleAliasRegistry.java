@@ -207,6 +207,11 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	}
 
 	/**
+	 * 取指定的 alias 所表示的最终 beanName
+	 * <p>
+	 * 主要是一个循环获取 beanName 的过程，例如，别名 A 指向名称为 B 的 bean 则返回 B，
+	 * 若 别名 A 指向别名 B，别名 B 指向名称为 C 的 bean，则返回 C。
+	 *</p>
 	 * Determine the raw name, resolving aliases to canonical names.
 	 * @param name the user-specified name
 	 * @return the transformed name
@@ -216,6 +221,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 		// Handle aliasing...
 		String resolvedName;
 		do {
+			// 循环，从 aliasMap 中，获取到最终的 beanName
 			resolvedName = this.aliasMap.get(canonicalName);
 			if (resolvedName != null) {
 				canonicalName = resolvedName;
