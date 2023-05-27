@@ -74,7 +74,9 @@ public abstract class AdviceModeImportSelector<A extends Annotation> implements 
 					annType.getSimpleName(), importingClassMetadata.getClassName()));
 		}
 
+		// 获取注解参数中 mode 值
 		AdviceMode adviceMode = attributes.getEnum(getAdviceModeAttributeName());
+		// 模版方法子类具体实现 返回导入类
 		String[] imports = selectImports(adviceMode);
 		if (imports == null) {
 			throw new IllegalArgumentException("Unknown AdviceMode: " + adviceMode);
@@ -83,6 +85,7 @@ public abstract class AdviceModeImportSelector<A extends Annotation> implements 
 	}
 
 	/**
+	 * 模版方法，子类实现
 	 * Determine which classes should be imported based on the given {@code AdviceMode}.
 	 * <p>Returning {@code null} from this method indicates that the {@code AdviceMode}
 	 * could not be handled or was unknown and that an {@code IllegalArgumentException}

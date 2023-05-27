@@ -41,6 +41,10 @@ import org.springframework.util.Assert;
 @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 public class ProxyAsyncConfiguration extends AbstractAsyncConfiguration {
 
+	/**
+	 * 往容器注入一个 AsyncAnnotationBeanPostProcessor ，通过在 bean 生命周期某个节点去处理 @Async 注解.
+	 * @return
+	 */
 	@Bean(name = TaskManagementConfigUtils.ASYNC_ANNOTATION_PROCESSOR_BEAN_NAME)
 	@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 	public AsyncAnnotationBeanPostProcessor asyncAdvisor() {

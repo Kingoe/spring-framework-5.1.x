@@ -155,6 +155,8 @@ import org.springframework.core.Ordered;
  * @see Async
  * @see AsyncConfigurer
  * @see AsyncConfigurationSelector
+ *
+ * 开启Spring异步功能
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
@@ -163,6 +165,8 @@ import org.springframework.core.Ordered;
 public @interface EnableAsync {
 
 	/**
+	 * 默认是@Async和EJB3.1规范下的@Asynchronous注解
+	 *
 	 * Indicate the 'async' annotation type to be detected at either class
 	 * or method level.
 	 * <p>By default, both Spring's @{@link Async} annotation and the EJB 3.1
@@ -174,6 +178,7 @@ public @interface EnableAsync {
 	Class<? extends Annotation> annotation() default Annotation.class;
 
 	/**
+	 * 默认使用 JDK代理，true表示使用Cglib代理
 	 * Indicate whether subclass-based (CGLIB) proxies are to be created as opposed
 	 * to standard Java interface-based proxies.
 	 * <p><strong>Applicable only if the {@link #mode} is set to {@link AdviceMode#PROXY}</strong>.
@@ -188,6 +193,7 @@ public @interface EnableAsync {
 	boolean proxyTargetClass() default false;
 
 	/**
+	 * 切面通知模式：默认动态代理PROXY
 	 * Indicate how async advice should be applied.
 	 * <p><b>The default is {@link AdviceMode#PROXY}.</b>
 	 * Please note that proxy mode allows for interception of calls through the proxy

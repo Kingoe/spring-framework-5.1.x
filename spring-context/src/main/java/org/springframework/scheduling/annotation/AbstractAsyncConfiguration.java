@@ -52,8 +52,13 @@ public abstract class AbstractAsyncConfiguration implements ImportAware {
 	protected Supplier<AsyncUncaughtExceptionHandler> exceptionHandler;
 
 
+	/**
+	 * 通过实现ImportAware接口获取@EnableAsync的属性值
+	 * @param importMetadata
+	 */
 	@Override
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
+		// 获取注解元数据 （参数值）
 		this.enableAsync = AnnotationAttributes.fromMap(
 				importMetadata.getAnnotationAttributes(EnableAsync.class.getName(), false));
 		if (this.enableAsync == null) {
@@ -63,6 +68,8 @@ public abstract class AbstractAsyncConfiguration implements ImportAware {
 	}
 
 	/**
+	 * 导入自定义的实现了AsyncConfigurer接口的bean
+	 * 去配置 executor & exceptionHandler
 	 * Collect any {@link AsyncConfigurer} beans through autowiring.
 	 */
 	@Autowired(required = false)

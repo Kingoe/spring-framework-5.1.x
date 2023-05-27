@@ -125,6 +125,7 @@ public interface BeanFactory {
 
 
 	/**
+	 * 按 bean 的id或者别名查找容器中的bean
 	 * Return an instance, which may be shared or independent, of the specified bean.
 	 * <p>This method allows a Spring BeanFactory to be used as a replacement for the
 	 * Singleton or Prototype design pattern. Callers may retain references to
@@ -139,6 +140,7 @@ public interface BeanFactory {
 	Object getBean(String name) throws BeansException;
 
 	/**
+	 * 泛型方法，按 bean 的id或者别名查找容器中的bean 返回指定类型的bean对象
 	 * Return an instance, which may be shared or independent, of the specified bean.
 	 * <p>Behaves the same as {@link #getBean(String)}, but provides a measure of type
 	 * safety by throwing a BeanNotOfRequiredTypeException if the bean is not of the
@@ -171,7 +173,7 @@ public interface BeanFactory {
 	 */
 	Object getBean(String name, Object... args) throws BeansException;
 
-	/**
+	/** 返回容器中指定类型的bean对象
 	 * Return the bean instance that uniquely matches the given object type, if any.
 	 * <p>This method goes into {@link ListableBeanFactory} by-type lookup territory
 	 * but may also be translated into a conventional by-name lookup based on the name
@@ -207,7 +209,7 @@ public interface BeanFactory {
 	 */
 	<T> T getBean(Class<T> requiredType, Object... args) throws BeansException;
 
-	/**
+	/** 获取指定类型bean对象的获取器，这个方法比较特别，以后会专门来讲
 	 * Return a provider for the specified bean, allowing for lazy on-demand retrieval
 	 * of instances, including availability and uniqueness options.
 	 * @param requiredType type the bean must match; can be an interface or superclass

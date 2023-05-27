@@ -1673,6 +1673,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	/**
+	 * 主要逻辑分为两种情况：
+	 * 第一种，当该实例对象为非 FactoryBean 类型，直接返回给定的 Bean 实例对象 beanInstance 。
+	 * 第二种，当该实例对象为FactoryBean 类型，从 FactoryBean ( beanInstance ) 中，获取 Bean 实例对象。
+	 *
 	 * Get the object for the given bean instance, either the bean
 	 * instance itself or its created object in case of a FactoryBean.
 	 * @param beanInstance the shared bean instance

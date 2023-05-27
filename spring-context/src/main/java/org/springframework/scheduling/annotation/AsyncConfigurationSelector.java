@@ -38,6 +38,7 @@ public class AsyncConfigurationSelector extends AdviceModeImportSelector<EnableA
 
 
 	/**
+	 * 返回 ProxyAsyncConfiguration 类的全限定名，其实就是往容器中添加 ProxyAsyncConfiguration 配置类
 	 * Returns {@link ProxyAsyncConfiguration} or {@code AspectJAsyncConfiguration}
 	 * for {@code PROXY} and {@code ASPECTJ} values of {@link EnableAsync#mode()},
 	 * respectively.
